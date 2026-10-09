@@ -61,6 +61,21 @@ def search_students():
     if not find:
         print("Student Not Found")
 
+def update_score():
+    student_id = input("enter student ID: ")
+    find = False
+    for student in students:
+        if student["student id"] == student_id:
+            find = True
+            updated_score = int(input("Enter New Score: "))
+            student["score"] = updated_score
+            print("Score Updated")
+    if not find:
+        print("Student not found")
+    with open("students.json", "w") as file:
+        json.dump(students, file)
+
+
 
 while True:
     print("===== CLASSROOM RECORD MANAGER =====")
@@ -80,7 +95,7 @@ while True:
     elif choice == "3":
         search_students()
     elif choice == "4":
-        pass
+        update_score()
     elif choice == "5":
         pass
     elif choice == "6":
