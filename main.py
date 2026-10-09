@@ -35,6 +35,16 @@ def save_students():
     with open("students.json", 'w') as file:
         json.dump(students, file)
 
+def view_students():
+    students = load_students()
+    if not students:
+        print("No Students Available")
+        return
+    for student in students:
+        print(f"Student ID: {student['student id']}")
+        print(f"Name: {student["name"]}")
+        print(f"Course: {student["course"]}")
+        print(f"Score: {student["score"]}")
 while True:
     print("===== CLASSROOM RECORD MANAGER =====")
     print("1. Add Student")
@@ -49,7 +59,7 @@ while True:
     if choice == "1":
         save_students()
     elif choice == "2":
-        pass
+        view_students()
     elif choice == "3":
         pass
     elif choice == "4":
