@@ -1,20 +1,39 @@
 import json, csv
 
-# Student ID
-# Name
-# Course
-# Score
+
+def load_students():
+    with open("students.json", "r") as file:
+        load = json.load(file)
+        return load
+
+
+students = load_students()
 
 
 def add_student():
     student_id = input("Enter Student ID: ")
     name = input("Enter Student Name: ")
     course = input("Enter Student Course: ")
-    score = int("Enter Student Score: ")
+    score = int(input("Enter Student Score: "))
+    student = {
+        "student id": student_id,
+        "name": name,
+        "course": course,
+        "score": score
+    }
 
+    for student in students:
+        if student["student id"] == student_id:
+            print("Student ID Already Exists!")
+            return False
+    return student
 
-
-
+def save_students():
+    new_students = add_student()
+    if new_students:
+        students.append(new_students)
+    with open("students.json", 'w') as file:
+        json.dump(students, file)
 
 while True:
     print("===== CLASSROOM RECORD MANAGER =====")
@@ -28,7 +47,7 @@ while True:
     print("8. Exit")
     choice = input("Choose An Option: ")
     if choice == "1":
-        pass
+        save_students()
     elif choice == "2":
         pass
     elif choice == "3":
