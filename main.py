@@ -15,7 +15,7 @@ def add_student():
     name = input("Enter Student Name: ")
     course = input("Enter Student Course: ")
     score = int(input("Enter Student Score: "))
-    student = {
+    a_student = {
         "student id": student_id,
         "name": name,
         "course": course,
@@ -26,7 +26,7 @@ def add_student():
         if student["student id"] == student_id:
             print("Student ID Already Exists!")
             return False
-    return student
+    return a_student
 
 def save_students():
     new_students = add_student()
@@ -88,6 +88,30 @@ def remove_student():
     with open("students.json", "w") as file:
         json.dump(students, file)  
 
+def class_statistics():
+    print("==== CLASS STATISTICS ====")
+    total_students = len(students)
+    print(f"Total Students: {total_students}")
+
+    total_scores = 0
+    for student in students:
+        total_scores = total_scores + student["score"]
+    average_score = total_scores / total_students
+    print(f"Average Score: {average_score}")
+
+    scores = []
+    for student in students:
+        scores.append(student["score"])
+    highest_score = max(scores)
+    loowest_score = min(scores)
+    print(f"Highest Score: {highest_score}")
+    print(f"Lowest Score: {loowest_score}")
+
+    for student in students:
+        if student["score"] == highest_score:
+            print(f"Student with highest score: {student['name']}")
+
+
   
 while True:
     print("===== CLASSROOM RECORD MANAGER =====")
@@ -111,7 +135,7 @@ while True:
     elif choice == "5":
         remove_student()
     elif choice == "6":
-        pass
+        class_statistics()
     elif choice == "7":
         pass
     elif choice == "8":
