@@ -45,6 +45,23 @@ def view_students():
         print(f"Name: {student["name"]}")
         print(f"Course: {student["course"]}")
         print(f"Score: {student["score"]}")
+
+
+def search_students():
+    student_id = input("Enter Student ID: ")
+    find = False
+    for student in students:
+        if student["student id"] == student_id:
+            find = True
+            print("Student Found")
+            print(f"Student ID: {student['student id']}")
+            print(f"Name: {student["name"]}")
+            print(f"Course: {student["course"]}")
+            print(f"Score: {student["score"]}")
+    if not find:
+        print("Student Not Found")
+
+
 while True:
     print("===== CLASSROOM RECORD MANAGER =====")
     print("1. Add Student")
@@ -61,7 +78,7 @@ while True:
     elif choice == "2":
         view_students()
     elif choice == "3":
-        pass
+        search_students()
     elif choice == "4":
         pass
     elif choice == "5":
